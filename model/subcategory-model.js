@@ -2,10 +2,22 @@ const mongoose = require("mongoose");
 
 const SubcategorySchema = new mongoose.Schema(
     {  
-        cat_sec: { type: String }, // e.g. "Sunglasses"
-        subCategoryName: { type: String }, // e.g. "Round Frame"
-        description: { type: String },
-        image: { type: String },
+        image: { 
+            type: String 
+        },
+        name: {
+            type: String,
+            required: true
+        },
+        previous_price:{
+            type:Number
+            },
+            current_price:{
+                type:Number
+        },
+        category:{
+            type:String
+        }
     },
     { timestamps: true }
 );

@@ -1,6 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const app = express();
+require("dotenv").config();
+const database = require("./config/config")
+// *****************routes****************
 const faq = require('./routes/faq-Routes')
 const categoryRoutes = require("./routes/category-route");
 const prodcutRoutes = require("./routes/product-routes");
@@ -12,14 +16,11 @@ const vendorRoutes = require("./routes/vendor-route");
 const customerRegistrationRoutes = require("./routes/Customer-register-routes")
 const loginRoute = require("./routes/login-routes")
 const adminRoute = require("./routes/auth-routes")
+const companyRoute =require("./routes/company-route");
 
-const app = express();
-require("dotenv").config();
-const database = require("./config/config")
-
-// const allowedOrigins = ['http://localhost:5173', 'http://localhost:5174'];
+//const allowedOrigins = ['http://localhost:5173', 'http://localhost:5174'];
 //versel url frontend
-const allowedOrigins = ['https://atal-homepage-new.vercel.app', 'https://atal-dashboard-font.vercel.app'];
+ const allowedOrigins = 'https://atal-optical-frontend.vercel.app/';
 const corsOptions = {
   origin: function (origin, callback) {
     if (!origin || allowedOrigins.includes(origin)) {
@@ -37,11 +38,7 @@ app.use(cors(corsOptions));
 database.connect();
 
 app.use(express.json());
-<<<<<<< HEAD
-//extra security
-=======
 
->>>>>>> 059ab9af41827a5c881e5f2763b069c03a3bfc11
 const path = require('path');
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
@@ -64,6 +61,7 @@ app.use("/api", vendorRoutes);
 app.use("/api", customerRegistrationRoutes)
 app.use("/api", loginRoute)
 app.use("/api", adminRoute)
+app.use("/api",companyRoute)
 
 app.listen(4000, () => {
   console.log("server start on Port : 4000");

@@ -4,7 +4,7 @@ const UserSchema = new mongoose.Schema({
     name: String,
     email: { type: String, unique: true },
     password: String,
-    role: { type: String, enum: ["admin", "vender", "company"] },
+    role: { type: String, enum: ["admin", "vendor", "company"] },
 }, { timestamps: true });
 
 module.exports = mongoose.model("User", UserSchema);

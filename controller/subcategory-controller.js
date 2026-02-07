@@ -51,22 +51,39 @@ exports.deletesubCategory = async (req, res) => {
   }
 };
 
+
 exports.addsubcategory = async (req, res) => {
   try {
-    let subCategoryData = { ...req.body };
+    const {previous_price,current_price,category,name} = req.body;
+    // Basic validation
+    if (!current_price || !category || !name) {
+      return res.status(400).json({
+        success: false,
+        message: "current_price and category are required",
+      });
+    }
 
+    const subCategoryData = {
+      previous_price,
+      current_price,
+      category,
+      name
+    };
+
+    // Handle image upload
     if (req.file) {
-      subCategoryData.image = req.file.filename; 
+      subCategoryData.image = req.file.filename;
     }
 
     const subcategory = new SubCategory(subCategoryData);
-    const savedsubcategory = await subcategory.save();
+    const savedSubcategory = await subcategory.save();
 
     return res.status(201).json({
       success: true,
       message: "SubCategory added successfully",
-      data: savedsubcategory,
+      data: savedSubcategory,
     });
+
   } catch (error) {
     return res.status(500).json({
       success: false,
@@ -75,6 +92,7 @@ exports.addsubcategory = async (req, res) => {
     });
   }
 };
+
 
 exports.getsubCategories = async (req, res) => {
   try {

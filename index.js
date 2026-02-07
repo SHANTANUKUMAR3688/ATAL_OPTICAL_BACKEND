@@ -20,7 +20,7 @@ const companyRoute =require("./routes/company-route");
 
 //const allowedOrigins = ['http://localhost:5173', 'http://localhost:5174'];
 //versel url frontend
- const allowedOrigins = 'https://atal-optical-frontend.vercel.app/';
+ const allowedOrigins = 'https://atal-optical-frontend.vercel.app';
 const corsOptions = {
   origin: function (origin, callback) {
     if (!origin || allowedOrigins.includes(origin)) {

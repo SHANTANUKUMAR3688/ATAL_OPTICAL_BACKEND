@@ -6,9 +6,9 @@ require("dotenv").config();
 //create faq
 exports.createFAQ = async (req, res) => {
   try {
-    const { category, title, description } = req.body;
+    const { title, description } = req.body;
 
-    if (!title || !description || !category) {
+    if (!title || !description) {
       return res.status(400).json({
         success: false,
         message: "Please fill all the feilds",
@@ -16,7 +16,6 @@ exports.createFAQ = async (req, res) => {
     }
 
     const newFAQ = new FAQ({
-      category,
       title,
       description,
     });
@@ -72,11 +71,11 @@ exports.deletefaq = async (req, res) => {
 exports.updatefaq = async (req, res) => {
   try {
     const { id } = req.params;
-    const { title, description, category } = req.body;
+    const { title, description } = req.body;
 
     const updatedFaq = await FAQ.findByIdAndUpdate(
       id,
-      { title, description, category },
+      { title, description },
       { new: true }
     );
 

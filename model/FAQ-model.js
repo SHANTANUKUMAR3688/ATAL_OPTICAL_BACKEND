@@ -1,10 +1,6 @@
 const mongoose = require("mongoose");
 
 const FAQ = new mongoose.Schema({
-    category: {
-        type: String,
-        default:"",
-    },
     title: {
         type: String
     },

@@ -96,7 +96,7 @@ exports.addsubcategory = async (req, res) => {
 
 exports.getsubCategories = async (req, res) => {
   try {
-    const subcategory = await SubCategory.find().sort({ createdAt: -1 });
+    const subcategory = await SubCategory.find();
     res.status(200).json({ subcategory });
   } catch (error) {
     res.status(500).json({

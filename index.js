@@ -4,6 +4,7 @@ const cors = require('cors');
 const app = express();
 require("dotenv").config();
 const database = require("./config/config")
+
 // *****************routes****************
 const faq = require('./routes/faq-Routes')
 const categoryRoutes = require("./routes/category-route");
@@ -14,9 +15,9 @@ const subcategoryroute = require("./routes/subcategory-route")
 const eyeCheckRoutes = require("./routes/eyeCheck-routes")
 const vendorRoutes = require("./routes/vendor-route");
 const customerRegistrationRoutes = require("./routes/Customer-register-routes")
-const loginRoute = require("./routes/login-routes")
 const adminRoute = require("./routes/auth-routes")
 const companyRoute =require("./routes/company-route");
+const payment= require('./routes/payment-route')
 
 //const allowedOrigins = ['http://localhost:5173', 'http://localhost:5174'];
 //versel frontend url
@@ -59,9 +60,9 @@ app.use('/api', review)
 app.use("/api", eyeCheckRoutes)
 app.use("/api", vendorRoutes);
 app.use("/api", customerRegistrationRoutes)
-app.use("/api", loginRoute)
 app.use("/api", adminRoute)
 app.use("/api",companyRoute)
+app.use('/api',payment)
 
 app.listen(4000, () => {
   console.log("server start on Port : 4000");

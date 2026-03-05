@@ -1,16 +1,16 @@
-const User = require("../model/user-model");
+const User = require("../model/auth-model");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 // Register
 exports.register = async (req, res) => {
-    const { name, email, password, role } = req.body;
+    const {email, password } = req.body;
     try {
         const userExists = await User.findOne({ email });
         if (userExists) return res.status(400).json({ message: "Email already registered" });
 
         const hashedPassword = await bcrypt.hash(password, 10);
-        const user = new User({ name, email, password: hashedPassword, role });
+        const user = new User({email, password: hashedPassword });
         await user.save();
         res.status(201).json({ message: "User registered successfully" });
     } catch (err) {
@@ -40,8 +40,6 @@ exports.login = async (req, res) => {
             token,
             user: {
                 id: user._id,
-                name: user.name,
-                role: user.role,
                 email: user.email,
             },
         });

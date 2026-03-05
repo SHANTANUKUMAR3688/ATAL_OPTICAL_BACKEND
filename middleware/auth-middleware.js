@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../model/customer-model");   // ✔️ Import User model
 
 /**
- * 🔐 protect
+ *  protect
  * ----------
  * 1. Verifies JWT from  `Authorization: Bearer <token>` header.
  * 2. Loads full user (minus password) into `req.user`.
@@ -24,7 +24,7 @@ const protect = async (req, res, next) => {
             return res.status(401).json({ message: "Unauthorized: User not found" });
         }
 
-        req.user = user; // ✅ now contains _id, name, role, email, …
+        req.user = user; //  now contains _id, name, role, email, …
         next();
     } catch (err) {
         return res.status(401).json({ message: "Unauthorized: Invalid token" });

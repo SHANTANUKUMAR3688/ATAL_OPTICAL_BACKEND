@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const User = require("../model/customer-model");   // ✔️ Import User model
+//const User = require("../model/customer-model");   // ✔️ Import User model
 
 /**
  *  protect
@@ -18,13 +18,13 @@ const protect = async (req, res, next) => {
 
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        const user = await User.findById(decoded.id).select("-password");
+        //const user = await User.findById(decoded.id).select("-password");
 
-        if (!user) {
-            return res.status(401).json({ message: "Unauthorized: User not found" });
-        }
+        // if (!user) {
+        //     return res.status(401).json({ message: "Unauthorized: User not found" });
+        // }
 
-        req.user = user; //  now contains _id, name, role, email, …
+        //req.user = user; //  now contains _id, name, role, email, …
         next();
     } catch (err) {
         return res.status(401).json({ message: "Unauthorized: Invalid token" });

@@ -9,8 +9,6 @@ const database = require("./config/config")
 const faq = require('./routes/faq-Routes')
 const categoryRoutes = require("./routes/category-route");
 const prodcutRoutes = require("./routes/product-routes");
-const review = require('./routes/review-route')
-const serviceRoutes = require("./routes/service-route");
 const subcategoryroute = require("./routes/subcategory-route")
 const adminRoute = require("./routes/auth-routes")
 const payment= require('./routes/payment-route')
@@ -50,9 +48,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use('/api', faq);
 app.use("/api", categoryRoutes);
 app.use("/api", prodcutRoutes);
-app.use("/api", serviceRoutes);
 app.use("/api", subcategoryroute)
-app.use('/api', review)
 app.use("/api", adminRoute)
 app.use('/api',payment)
 
